@@ -1,1 +1,67 @@
+Basic Functions
+1.length() → returns number of characters
+2.isEmpty() → checks if string is empty
+3,isBlank() → checks if string has only spaces
 
+Character Access
+charAt() → returns character at given index
+
+Searching
+indexOf() → returns first occurrence index
+lastIndexOf() → returns last occurrence index
+contains() → checks if substring exists
+
+Substring
+substring() → extracts part of string
+subSequence() → returns subsequence
+
+Case Conversion
+toUpperCase() → converts to uppercase
+toLowerCase() → converts to lowercase
+
+Comparison
+equals() → checks content equality
+equalsIgnoreCase() → compares ignoring case
+compareTo() → compares lexicographically
+compareToIgnoreCase() → compares ignoring case
+
+Concatenation
+concat() → joins two strings
+
+Trimming
+trim() → removes leading & trailing spaces
+strip() → removes spaces (Unicode aware)
+stripLeading() → removes leading spaces
+stripTrailing() → removes trailing spaces
+
+Replace
+replace() → replaces characters/strings
+replaceAll() → replaces using regex
+replaceFirst() → replaces first match
+
+Split & Join
+split() → splits string into array
+join() → joins elements with delimiter
+
+Conversion
+toCharArray() → converts to char array
+getBytes() → converts to byte array
+valueOf() → converts other types to string
+
+Start/End Check
+startsWith() → checks starting prefix
+endsWith() → checks ending suffix
+
+Matching
+matches() → checks regex match
+
+Advanced (Java 11+)
+repeat() → repeats string
+lines() → returns stream of lines
+indent() → adds indentation
+transform() → applies function
+
+Static Methods
+format() → formats string
+copyValueOf() → converts char array to string
+intern() → returns canonical representation
