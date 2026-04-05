@@ -1,0 +1,20 @@
+class Amazon{
+    void search(String product){
+        System.out.println("product " +product);
+    }
+    void search(String product ,int price){
+        System.out.println("product "+product+" price "+price);
+    }
+    void search(String product,String ele){
+        System.out.println("product "+product+" electronic "+ele);
+    }
+}
+
+public class polymorphism {
+    public static void main(String[] args) {
+        Amazon a=new Amazon();
+        a.search("laptop");
+        a.search("laptop",50000);
+        a.search("laptop","electronics");
+    }
+}
