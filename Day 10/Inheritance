@@ -1,0 +1,83 @@
+//                          SINGLE INHERITANCE
+ 
+class Animal{
+    void eat(){
+        System.out.println("animal is eating");
+    }
+}
+class cat extends Animal{
+    void sound(){
+        System.out.println("cat meows");
+    }
+}
+public class Main{
+    public static void main(String[] args){
+        Cat c=new Cat();
+        c.eat();
+        c.sound();
+    }
+}
+/*o/p:animal is eating
+    cat meows
+*/
+
+
+//                        MULTILEVEL INHERITANCE
+
+class Animal{
+    void eat(){
+        System.out.println("animal is eating");
+    }
+}
+class Cat extends Animal{
+    void sound(){
+        System.out.println("cat meows");
+    }
+}
+class Puppy extends Cat{
+    void play(){
+        System.out.println("puppy is playing");
+    }
+}
+public class Main{
+    public static void main(String[] args){
+       Puppy p=new Puppy();
+        p.eat();
+        p.sound();
+        p.play();
+    }
+}
+/*
+o/p:animal is eating
+       cat meows
+       puppy is playing
+*/
+
+//                        HIERARCHIAL INHERITANCE
+
+class Animal{
+    void eat(){
+        System.out.println("animal is eating");
+    }
+}
+class Cat extends Animal{
+    void sound(){
+        System.out.println("cat meows");
+    }
+}
+class Puppy extends Animal{
+    void play(){
+        System.out.println("puppy is playing");
+    }
+}
+public class Main{
+    public static void main(String[] args){
+       Puppy p=new Puppy();
+        p.eat();
+        p.play();
+    }
+}
+/*
+o/p:animal is eating
+    puppy is playing
+*/
