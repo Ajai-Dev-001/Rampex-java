@@ -1,0 +1,190 @@
+import java.util.*;
+
+// ---------------- VEHICLE (ABSTRACT CLASS) ----------------
+abstract class Vehicle {
+    private String vehicleNumber;
+    private String type;
+
+    public Vehicle(String vehicleNumber, String type) {
+        this.vehicleNumber = vehicleNumber;
+        this.type = type;
+    }
+
+    public String getVehicleNumber() {
+        return vehicleNumber;
+    }
+
+    public String getType() {
+        return type;
+    }
+}
+
+// ---------------- CHILD CLASSES ----------------
+class Car extends Vehicle {
+    public Car(String number) {
+        super(number, "Car");
+    }
+}
+
+class Bike extends Vehicle {
+    public Bike(String number) {
+        super(number, "Bike");
+    }
+}
+
+class Truck extends Vehicle {
+    public Truck(String number) {
+        super(number, "Truck");
+    }
+}
+
+// ---------------- PARKING SLOT ----------------
+class ParkingSlot {
+    private int slotId;
+    private boolean isOccupied;
+    private Vehicle vehicle;
+
+    public ParkingSlot(int slotId) {
+        this.slotId = slotId;
+        this.isOccupied = false;
+        this.vehicle = null;
+    }
+
+    public boolean isOccupied() {
+        return isOccupied;
+    }
+
+    public int getSlotId() {
+        return slotId;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void parkVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+        this.isOccupied = true;
+    }
+
+    public void removeVehicle() {
+        this.vehicle = null;
+        this.isOccupied = false;
+    }
+}
+
+// ---------------- PARKING LOT ----------------
+class ParkingLot {
+    private List<ParkingSlot> slots;
+
+    public ParkingLot(int capacity) {
+        slots = new ArrayList<>();
+        for (int i = 1; i <= capacity; i++) {
+            slots.add(new ParkingSlot(i));
+        }
+    }
+
+    // PARK VEHICLE
+    public void parkVehicle(Vehicle vehicle) {
+        for (ParkingSlot slot : slots) {
+            if (!slot.isOccupied()) {
+                slot.parkVehicle(vehicle);
+                System.out.println("✅ " + vehicle.getType() +
+                        " parked at slot " + slot.getSlotId());
+                return;
+            }
+        }
+        System.out.println("❌ Parking Full!");
+    }
+
+    // REMOVE VEHICLE
+    public void removeVehicle(int slotId) {
+        for (ParkingSlot slot : slots) {
+            if (slot.getSlotId() == slotId) {
+                if (slot.isOccupied()) {
+                    System.out.println("🚗 Vehicle " +
+                            slot.getVehicle().getVehicleNumber() +
+                            " removed from slot " + slotId);
+                    slot.removeVehicle();
+                } else {
+                    System.out.println("⚠️ Slot already empty!");
+                }
+                return;
+            }
+        }
+        System.out.println("❌ Invalid slot number!");
+    }
+
+    // DISPLAY STATUS
+    public void displayStatus() {
+        System.out.println("\n📊 Parking Lot Status:");
+        for (ParkingSlot slot : slots) {
+            if (slot.isOccupied()) {
+                System.out.println("Slot " + slot.getSlotId() +
+                        " -> Occupied (" +
+                        slot.getVehicle().getVehicleNumber() + ")");
+            } else {
+                System.out.println("Slot " + slot.getSlotId() + " -> Empty");
+            }
+        }
+    }
+}
+
+// ---------------- MAIN CLASS ----------------
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        ParkingLot lot = new ParkingLot(5);
+
+        while (true) {
+            System.out.println("\n===== 🚗 Parking Lot Menu =====");
+            System.out.println("1. Park Vehicle");
+            System.out.println("2. Remove Vehicle");
+            System.out.println("3. Display Status");
+            System.out.println("4. Exit");
+            System.out.print("Enter choice: ");
+
+            int choice = sc.nextInt();
+
+            switch (choice) {
+
+                case 1:
+                    System.out.print("Enter Vehicle Type (1-Car, 2-Bike, 3-Truck): ");
+                    int type = sc.nextInt();
+                    System.out.print("Enter Vehicle Number: ");
+                    String number = sc.next();
+
+                    Vehicle vehicle = null;
+
+                    if (type == 1) vehicle = new Car(number);
+                    else if (type == 2) vehicle = new Bike(number);
+                    else if (type == 3) vehicle = new Truck(number);
+                    else {
+                        System.out.println("❌ Invalid type!");
+                        break;
+                    }
+
+                    lot.parkVehicle(vehicle);
+                    break;
+
+                case 2:
+                    System.out.print("Enter Slot ID to remove vehicle: ");
+                    int slotId = sc.nextInt();
+                    lot.removeVehicle(slotId);
+                    break;
+
+                case 3:
+                    lot.displayStatus();
+                    break;
+
+                case 4:
+                    System.out.println("👋 Exiting...");
+                    return;
+
+                default:
+                    System.out.println("❌ Invalid choice!");
+            }
+        }
+    }
+}
