@@ -1,0 +1,19 @@
+import java.io.File;
+import java.io.IOExcepition;
+public class Main
+{
+	public static void main(String[] args) {
+		try{
+		    File f= new File("test.txt");
+		    if(f.createNewFile()){
+		        System.out.print("file has created"+f.grtName());
+		    }
+		    else{
+		        System.out.print("file already exist");
+		    }
+		}catch(IOException e){
+		    System.out.println("error");
+		    e.printStackTrace();
+		}
+}
+}
